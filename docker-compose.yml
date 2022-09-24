@@ -12,6 +12,9 @@ services:
       - /var/www/admin.nikolaydemidovez.by:/var/www/admin.nikolaydemidovez.by
       - /var/www/club.nikolaydemidovez.by:/var/www/club.nikolaydemidovez.by
       - /var/www/paulmatic.nikolaydemidovez.by:/var/www/paulmatic.nikolaydemidovez.by
+      - /var/www/palmautic.nikolaydemidovez.by:/var/www/palmautic.nikolaydemidovez.by
+      - /var/www/palmautic.ru:/var/www/palmautic.ru
+      - /var/www/platform.palmautic.ru:/var/www/platform.palmautic.ru
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
