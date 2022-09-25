@@ -1,8 +1,9 @@
 version: "3.3"
 services:
-  nginx:
+  nginx_nikolaydemidovez_by:
     restart: unless-stopped
     image: nginx:1.20.2-alpine
+    container_name: nginx_nikolaydemidovez_by_co
     ports:
       - "80:80"
       - "443:443"
@@ -11,16 +12,13 @@ services:
       - /var/www/nikolaydemidovez.by:/var/www/nikolaydemidovez.by
       - /var/www/admin.nikolaydemidovez.by:/var/www/admin.nikolaydemidovez.by
       - /var/www/club.nikolaydemidovez.by:/var/www/club.nikolaydemidovez.by
-      - /var/www/paulmatic.nikolaydemidovez.by:/var/www/paulmatic.nikolaydemidovez.by
-      - /var/www/palmautic.nikolaydemidovez.by:/var/www/palmautic.nikolaydemidovez.by
-      - /var/www/palmautic.ru:/var/www/palmautic.ru
-      - /var/www/platform.palmautic.ru:/var/www/platform.palmautic.ru
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
-  certbot:
+  certbot_nikolaydemidovez_by:
     image: certbot/certbot
     restart: unless-stopped
+    container_name: certbot_nikolaydemidovez_by_co
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot

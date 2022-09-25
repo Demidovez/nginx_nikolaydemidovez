@@ -5,13 +5,13 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(nikolaydemidovez.by club.nikolaydemidovez.by admin.nikolaydemidovez.by paulmatic.nikolaydemidovez.by palmautic.nikolaydemidovez.by)
+domains=(palmautic.ru platform.palmautic.ru dev-platform.palmautic.ru)
 rsa_key_size=4096
 data_path="./certbot"
 email="nikolaydemidovez@gmail.com" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
-container_nginx="nginx"
-container_certbot="certbot"
+container_nginx="nginx_palmautic_ru"
+container_certbot="certbot_palmautic_ru"
 
 if [ -d "$data_path" ]; then
   read -p "Existing data found for $domains. Continue and replace existing certificate? (y/N) " decision

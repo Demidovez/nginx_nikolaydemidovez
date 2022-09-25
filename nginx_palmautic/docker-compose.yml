@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  nginx_palmautic:
+    restart: unless-stopped
+    image: nginx:1.20.2-alpine
+    container_name: nginx_palmautic_co
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./conf:/etc/nginx/conf.d
+      - /var/www/palmautic.ru:/var/www/palmautic.ru
+      - /var/www/platform.palmautic.ru:/var/www/platform.palmautic.ru
+      - /var/www/dev-platform.palmautic.ru:/var/www/dev-platform.palmautic.ru
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
