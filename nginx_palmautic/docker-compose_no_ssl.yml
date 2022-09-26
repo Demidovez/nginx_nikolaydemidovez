@@ -1,9 +1,9 @@
 version: "3.3"
 services:
-  nginx_palmautic_ru:
+  nginx_palmautic:
     restart: unless-stopped
     image: nginx:1.20.2-alpine
-    container_name: nginx_palmautic_ru_co
+    container_name: nginx_palmautic_co
     ports:
       - "80:80"
       - "443:443"
@@ -12,14 +12,4 @@ services:
       - /var/www/palmautic.ru:/var/www/palmautic.ru
       - /var/www/platform.palmautic.ru:/var/www/platform.palmautic.ru
       - /var/www/dev-platform.palmautic.ru:/var/www/dev-platform.palmautic.ru
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
     command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
-  certbot_palmautic_ru:
-    image: certbot/certbot
-    restart: unless-stopped
-    container_name: certbot_palmautic_ru_co
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
